@@ -2,7 +2,7 @@ const NewMovie = (props) => {
   let formFields = {}
 
   return(
-    <form onSubmit={ (e) => { props.handleFormSubmit(formFields.title.value, formFields.description.value); e.target.reset();}
+    <form onSubmit={ (e) => { props.handleFormSubmit(formFields.title.value, formFields.description.value); e.target.reset(); }
   }>
       <p>
         <input ref={input => formFields.title = input} placeholder='Enter the title of the movie'/>

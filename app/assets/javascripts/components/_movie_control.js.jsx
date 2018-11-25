@@ -1,9 +1,8 @@
 class MovieControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      movies: []
-    };
+    this.state = { movies: [] };
+
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.addNewMovie = this.addNewMovie.bind(this);
 
@@ -86,7 +85,9 @@ class MovieControl extends React.Component {
     return(
       <div>
         <NewMovie handleFormSubmit={this.handleFormSubmit}/>
-        <Movies movies={this.state.movies} handleDelete={this.handleDelete} handleUpdate = {this.handleUpdate}/>
+        <Movies movies={ this.state.movies }
+          handleDelete={ this.handleDelete }
+          handleUpdate={ this.handleUpdate } />
       </div>
     )
   }
