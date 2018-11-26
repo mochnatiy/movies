@@ -4,8 +4,16 @@ class Api::V1::MoviesController < ApplicationController
   end
 
   def create
-    movie = Movie.create(movie_params)
-    render json: movie
+    movie = Movie.new(movie_params)
+
+    if movie.save
+      render json: movie
+    else
+      render(
+        json: { errors: movie.errors.full_messages.join(',') }.to_json,
+        status: :unprocessable_entity
+      )
+    end
   end
 
   def destroy

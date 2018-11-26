@@ -31,7 +31,7 @@ class MovieControl extends React.Component {
 
   addNewMovie(movie) {
     this.setState({
-      movie: this.state.movies.concat(movie)
+      movies: this.state.movies.concat(movie).sort((a, b) => b.id - a.id)
     });
   }
 
@@ -50,7 +50,7 @@ class MovieControl extends React.Component {
     remainedMovies = this.state.movies.filter((movie) => movie.id !== id);
 
     this.setState({
-      movies: remainedMovies
+      movies: remainedMovies.sort((a, b) => b.id - a.id)
     });
   }
 
@@ -71,7 +71,7 @@ class MovieControl extends React.Component {
     updatedMovies.push(movie);
 
     this.setState({
-      movies: updatedMovies.sort((a, b) => a.id - b.id)
+      movies: updatedMovies.sort((a, b) => b.id - a.id)
     });
   };
 
@@ -84,10 +84,15 @@ class MovieControl extends React.Component {
   render() {
     return(
       <div>
-        <NewMovie handleFormSubmit={this.handleFormSubmit}/>
-        <Movies movies={ this.state.movies }
-          handleDelete={ this.handleDelete }
-          handleUpdate={ this.handleUpdate } />
+        <NewMovie handleFormSubmit={this.handleFormSubmit} />
+        <div className="pd-top-20">
+          <h3 className="pb-3 mb-4 font-italic border-bottom">
+            Existing Movies
+          </h3>
+          <Movies movies={ this.state.movies }
+            handleDelete={ this.handleDelete }
+            handleUpdate={ this.handleUpdate } />
+        </div>
       </div>
     )
   }
