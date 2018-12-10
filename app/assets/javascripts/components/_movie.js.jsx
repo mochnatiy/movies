@@ -11,8 +11,17 @@ class Movie extends React.Component{
     if(this.state.editable) {
       let title = this.title.value;
       let description = this.description.value;
+      let category_id = this.category_id.value;
       let id = this.props.movie.id;
-      let movie = { id: id, title: title, description: description };
+
+      let movie = {
+        id: id,
+        title: title,
+        description: description,
+        category_id: category_id,
+        category_title: ''
+      };
+
       this.props.handleUpdate(movie);
     }
 
@@ -42,6 +51,14 @@ class Movie extends React.Component{
         </div> :
       <p className="description">{this.props.movie.description}</p>;
 
+    let category = this.state.editable ?
+      <div className="form-group">
+        <CategorySelect
+          reference={select => this.category_id = select}
+          current_option={this.props.movie.category_id} />
+      </div> :
+      <p className="category">Category: {this.props.movie.category_title}</p>
+
     let resetButton = this.state.editable ?
       <button className="btn btn-outline-secondary" onClick={() => this.handleReset()}>Cancel</button> :
       '';
@@ -49,6 +66,7 @@ class Movie extends React.Component{
     return(
       <div className="post">
         <div className="post-title">{title}</div>
+        <div>{category}</div>
         <div>{description}</div>
         <div className="form-group">
           <button className="btn btn-primary" onClick={() => this.handleEdit()}>{this.state.editable? 'Save' : 'Edit'}</button>

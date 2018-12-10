@@ -13,8 +13,14 @@ class MovieControl extends React.Component {
     this.updateMovie = this.updateMovie.bind(this);
   }
 
-  handleFormSubmit(title, description) {
-    let body = JSON.stringify({ movie: { title: title, description: description } });
+  handleFormSubmit(title, description, category_id) {
+    let body = JSON.stringify({
+      movie: {
+        title: title,
+        description: description,
+        category_id: category_id
+      }
+    });
 
     fetch('/api/v1/movies', {
       method: 'POST',
@@ -30,6 +36,7 @@ class MovieControl extends React.Component {
   }
 
   addNewMovie(movie) {
+    $('#addNewMovie').modal('hide');
     this.setState({
       movies: this.state.movies.concat(movie).sort((a, b) => b.id - a.id)
     });
@@ -61,7 +68,9 @@ class MovieControl extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then((response) => {
+    }).then(
+      (response) => { return response.json() }
+    ).then((movie) => {
       this.updateMovie(movie);
     });
   };

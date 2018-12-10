@@ -2,6 +2,8 @@ div class="container"
   header class="header py-3"
     div class="row flex-nowrap justify-content-between align-items-center"
       div class="col-4 pt-1"
+        button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#addNewMovie"
+          | Add New Movie
       div class="col-4 text-center"
         a class="header-logo text-dark" href="#"
           | Movies Rating
@@ -14,15 +16,7 @@ div class="container"
           | Sign up
         a class="btn btn-sm btn-outline-secondary" href="#"
           | Log in
-
-  div class="nav-scroller py-1 mb-2"
-    nav class="nav d-flex justify-content-between"
-      a class="p-2 text-muted" href="#"
-        | My Movies
-      a class="p-2 text-muted add-new" href="#"
-        | Add New
-
-  hr
+  br
 
 main role="main" class="container"
   div class="row"
@@ -36,7 +30,7 @@ main role="main" class="container"
           | Newer
 
     aside class="col-md-2 sidebar"
-      div class="p-3"
+      div class="p-3 pd-top-0"
         h4 class="font-italic"
           | Categories
         ol class="list-unstyled mb-0"
