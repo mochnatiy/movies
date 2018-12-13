@@ -37,7 +37,9 @@ RSpec.describe Api::V1::MoviesController do
       end
 
       specify 'a JSON with movies shoud be returned' do
-        movies = JSON.parse(response.body).map!(&:symbolize_keys)
+        movies = JSON.parse(response.body).
+          each { |elm| elm.delete('created_at') }.
+          map(&:symbolize_keys)
 
         expected_result = [
           {
@@ -56,7 +58,7 @@ RSpec.describe Api::V1::MoviesController do
           },
         ]
 
-        expected_result.sort!{ |x, y| y[:id] <=> x[:id] }
+        expected_result.sort! { |x, y| y[:id] <=> x[:id] }
 
         expect(movies).to eql(expected_result)
       end
@@ -94,7 +96,9 @@ RSpec.describe Api::V1::MoviesController do
       end
 
       specify 'a JSON with active movies shoud be returned' do
-        movies = JSON.parse(response.body).map!(&:symbolize_keys)
+        movies = JSON.parse(response.body).
+          each { |elm| elm.delete('created_at') }.
+          map(&:symbolize_keys)
 
         expected_result = [
           {
@@ -150,14 +154,14 @@ RSpec.describe Api::V1::MoviesController do
       end
 
       specify 'a JSON with new movie should be returned' do
-        expect(JSON.parse(response.body).symbolize_keys).to eq(
-          {
-            id: @movie.id,
-            title: @movie.title,
-            description: @movie.description,
-            category_id: category.id,
-            category_title: category.title,
-          }
+        expect(
+          JSON.parse(response.body).except('created_at').symbolize_keys
+        ).to eq(
+          id: @movie.id,
+          title: @movie.title,
+          description: @movie.description,
+          category_id: category.id,
+          category_title: category.title
         )
       end
     end
@@ -204,14 +208,14 @@ RSpec.describe Api::V1::MoviesController do
       end
 
       specify 'a JSON with updated movie should be returned' do
-        expect(JSON.parse(response.body).symbolize_keys).to eq(
-          {
-            id: movie.id,
-            title: old_title,
-            description: new_description,
-            category_id: category.id,
-            category_title: category.title,
-          }
+        expect(
+          JSON.parse(response.body).except('created_at').symbolize_keys
+        ).to eq(
+          id: movie.id,
+          title: old_title,
+          description: new_description,
+          category_id: category.id,
+          category_title: category.title
         )
       end
     end

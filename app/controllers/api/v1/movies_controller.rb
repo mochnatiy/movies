@@ -6,7 +6,6 @@ module Api
       def index
         @movies = Movie.
           includes(:category).
-          select(:id, :title, :category_id, :description).
           active.
           order('id DESC')
       end

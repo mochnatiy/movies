@@ -33,16 +33,7 @@ main role="main" class="container"
       div class="p-3 pd-top-0"
         h4 class="font-italic"
           | Categories
-        ol class="list-unstyled mb-0"
-          li
-            a href="#"
-              | Comedy
-          li
-            a href="#"
-              | Drama
-          li
-            a href="#"
-              | Horror
+        = react_component 'CategoryFilter'
 
 footer class="footer"
   p
