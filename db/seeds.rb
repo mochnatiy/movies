@@ -96,3 +96,8 @@ movies = [
 movies.each do |movie|
   Movie.create(title: movie[:title], description: movie[:description])
 end
+
+# Create categories
+%w(Comedy Action Drama Horror).each do |title|
+  Category.create(title: title)
+end

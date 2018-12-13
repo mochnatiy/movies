@@ -193,7 +193,7 @@ Lint/AssignmentInCondition:
 
 # http://rubocop.readthedocs.io/en/latest/cops_metrics/#metricsabcsize
 Metrics/AbcSize:
-  Max: 10
+  Max: 12
 
 # http://rubocop.readthedocs.io/en/latest/cops_metrics/#metricsblocklength
 Metrics/BlockLength:
@@ -503,6 +503,10 @@ Style/WhileUntilModifier:
 # Style/SafeNavigation:
 #   Exclude:
 #     - 'app/models/history_bulk.rb'
+
+# https://rubocop.readthedocs.io/en/latest/cops_style/#styleemptymethod
+Style/EmptyMethod:
+  EnforcedStyle: expanded
 
 # http://rubocop.readthedocs.io/en/latest/cops_bundler/#bundlerorderedgems
 Bundler/OrderedGems:

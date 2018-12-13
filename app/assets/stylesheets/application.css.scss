@@ -19,7 +19,7 @@
 fieldset, label { margin: 0; padding: 0; }
 h1 { font-size: 1.5em; margin: 10px; }
 .btn { margin-right: 5px; }
-.pd-top-20 { padding-top: 20px; }
+.pd-top-0 { padding-top: 0 !important; }
 
 .header {
   line-height: 1;
@@ -100,23 +100,24 @@ h1, h2, h3, h4, h5, h6 {
 /*
  * Name and description
  */
-.blog-title {
+.title {
   margin-bottom: 0;
   font-size: 2rem;
   font-weight: 400;
 }
 
-.blog-description {
+.description {
   font-size: 1.1rem;
   color: #999;
-}
-
-.description {
   text-align: justify;
 }
 
+.category {
+  color: #808080;
+}
+
 @media (min-width: 40em) {
-  .blog-title {
+  .title {
     font-size: 3.5rem;
   }
 }

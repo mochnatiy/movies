@@ -7,12 +7,22 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.4.1-node-browsers
-      
+      - image: circleci/ruby:2.4.1-node-browsers
+        environment:
+          PG_HOST: localhost
+          PG_USER: ubuntu
+          RAILS_ENV: test
+          RACK_ENV: test
+          DATABASE_URL: postgresql://ubuntu@localhost:5432/test_db
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
+      - image: circleci/postgres:10.6
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: test_db
 
     working_directory: ~/repo
 
@@ -35,10 +45,13 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-        
+
       # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
+
+      # environment:
+        # DATABASE_URL: "postgres://ubuntu@localhost:5432/db_name"
 
       # run tests!
       - run:
@@ -46,7 +59,7 @@ jobs:
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-            
+
             bundle exec rspec --format progress \
                             --format RspecJunitFormatter \
                             --out /tmp/test-results/rspec.xml \
