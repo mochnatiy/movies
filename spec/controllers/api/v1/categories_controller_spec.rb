@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::CategoriesController do
@@ -26,16 +28,16 @@ RSpec.describe Api::V1::CategoriesController do
           [
             {
               id: category1.id,
-              title: category1.title
+              title: category1.title,
             },
             {
               id: category2.id,
-              title: category2.title
+              title: category2.title,
             },
             {
               id: category3.id,
-              title: category3.title
-            }
+              title: category3.title,
+            },
           ]
         )
       end

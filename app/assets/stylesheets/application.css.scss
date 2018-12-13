@@ -19,7 +19,7 @@
 fieldset, label { margin: 0; padding: 0; }
 h1 { font-size: 1.5em; margin: 10px; }
 .btn { margin-right: 5px; }
-.pd-top-0 { padding-top: 0px !important; }
+.pd-top-0 { padding-top: 0 !important; }
 
 .header {
   line-height: 1;
@@ -113,7 +113,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .category {
-  color: gray;
+  color: #808080;
 }
 
 @media (min-width: 40em) {

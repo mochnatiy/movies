@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Api::V1::MoviesController do
@@ -43,15 +45,15 @@ RSpec.describe Api::V1::MoviesController do
             title: movie1.title,
             description: movie1.description,
             category_id: movie1.category.id,
-            category_title: movie1.category.title
+            category_title: movie1.category.title,
           },
           {
             id: movie2.id,
             title: movie2.title,
             description: movie2.description,
             category_id: movie2.category.id,
-            category_title: movie2.category.title
-          }
+            category_title: movie2.category.title,
+          },
         ]
 
         expected_result.sort!{ |x, y| y[:id] <=> x[:id] }
@@ -100,8 +102,8 @@ RSpec.describe Api::V1::MoviesController do
             title: movie1.title,
             description: movie1.description,
             category_id: movie1.category.id,
-            category_title: movie1.category.title
-          }
+            category_title: movie1.category.title,
+          },
         ]
 
         expect(movies).to eql(expected_result)
@@ -125,8 +127,8 @@ RSpec.describe Api::V1::MoviesController do
             movie: {
               category_id: category.id,
               title: title,
-              description: description
-            }
+              description: description,
+            },
           }
         )
 
@@ -154,7 +156,7 @@ RSpec.describe Api::V1::MoviesController do
             title: @movie.title,
             description: @movie.description,
             category_id: category.id,
-            category_title: category.title
+            category_title: category.title,
           }
         )
       end
@@ -183,8 +185,8 @@ RSpec.describe Api::V1::MoviesController do
             movie: {
               category_id: category.id,
               title: movie.title,
-              description: new_description
-            }
+              description: new_description,
+            },
           }
         )
 
@@ -208,7 +210,7 @@ RSpec.describe Api::V1::MoviesController do
             title: old_title,
             description: new_description,
             category_id: category.id,
-            category_title: category.title
+            category_title: category.title,
           }
         )
       end
@@ -260,7 +262,7 @@ RSpec.describe Api::V1::MoviesController do
       end
 
       specify 'removed movie remains in database' do
-        expect{ movie2.reload }.not_to raise_error
+        expect { movie2.reload }.not_to raise_error
       end
 
       specify 'attribute is_deleted should be changed to true' do

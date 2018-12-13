@@ -62,6 +62,7 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rubocop', '0.59.2'
 end
 
 group :development do
@@ -79,6 +80,7 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'rspec_junit_formatter'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

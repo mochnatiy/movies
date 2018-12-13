@@ -6,7 +6,8 @@ class Movie < ApplicationRecord
 
   scope :active, -> { where(is_deleted: false) }
 
-  def destroy #:nodoc:
+  #:nodoc:
+  def destroy
     run_callbacks(:destroy) do
       unless new_record?
         update_attribute(:is_deleted, true)
